@@ -4,46 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Feliz Cumpleaños Elizabeth</title>
-    <img src="ely.jpeg"
-     alt="Elizabeth"
-     style="width:250px;
-            border-radius:50%;
-            border:5px solid white;
-            box-shadow:0 0 20px white;">
 
     <style>
         body {
             margin: 0;
-            overflow: hidden;
+            padding: 0;
+            /* Cambiado para evitar que la pantalla se estire a los lados en el celular */
+            overflow-x: hidden; 
             font-family: Arial, sans-serif;
             text-align: center;
             background: linear-gradient(135deg, #ff9a9e, #fad0c4);
             color: white;
+            min-height: 100vh;
         }
 
         .contenedor {
-            margin-top: 100px;
+            /* Bajamos el margen para dar espacio a la foto y el botón */
+            margin-top: 30px; 
+            padding: 15px;
             position: relative;
             z-index: 2;
+            box-sizing: border-box;
+        }
+
+        /* Estilo para la foto de Elizabeth */
+        .foto-perfil {
+            width: 220px;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid white;
+            box-shadow: 0 0 20px white;
+            margin-bottom: 20px;
         }
 
         h1 {
-            font-size: 60px;
+            font-size: 45px;
             animation: brillo 2s infinite alternate;
+            margin: 15px 0;
         }
 
         h2 {
-            font-size: 30px;
+            font-size: 26px;
+            margin: 10px 0;
         }
 
         p {
-            font-size: 22px;
-            width: 80%;
+            font-size: 20px;
+            width: 90%;
+            max-width: 600px;
             margin: auto;
+            line-height: 1.5;
         }
 
-        button {
-            margin-top: 30px;
+        /* Botón de Sorpresa */
+        .btn-sorpresa {
+            margin-top: 25px;
             padding: 15px 30px;
             font-size: 20px;
             border: none;
@@ -52,54 +68,86 @@
             background: white;
             color: #ff4d6d;
             font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
-        button:hover {
-            transform: scale(1.1);
+        .btn-sorpresa:hover {
+            transform: scale(1.05);
+        }
+
+        /* Botón de Música Adaptable */
+        .btn-musica {
+            margin: 15px auto;
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            background: white;
+            color: #ff4d6d;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
         #mensaje {
             display: none;
-            margin-top: 20px;
-            font-size: 24px;
+            margin-top: 25px;
+            font-size: 22px;
+            font-weight: bold;
+            padding: 0 10px;
         }
 
         @keyframes brillo {
-            from {
-                text-shadow: 0 0 10px white;
-            }
-            to {
-                text-shadow: 0 0 30px yellow, 0 0 50px orange;
-            }
+            from { text-shadow: 0 0 10px white; }
+            to { text-shadow: 0 0 25px yellow, 0 0 40px orange; }
         }
 
+        /* Globos decorativos */
         .globo {
             position: absolute;
-            bottom: -100px;
-            font-size: 110px;
+            bottom: -150px;
+            z-index: 1;
             animation: subir linear infinite;
         }
 
         @keyframes subir {
-            from {
-                transform: translateY(0);
-            }
-            to {
-                transform: translateY(-120vh);
-            }
+            from { transform: translateY(0); }
+            to { transform: translateY(-130vh); }
         }
 
-        .g1 { left: 10%; animation-duration: 8s; font-size: 100px;}
-        .g2 { left: 25%; animation-duration: 10s; font-size: 140px;}
-        .g3 { left: 40%; animation-duration: 7s; font-size: 110px;}
-        .g4 { left: 60%; animation-duration: 9s; font-size: 150px;}
-        .g5 { left: 80%; animation-duration: 11s; font-size: 115px;}
+        .g1 { left: 5%; animation-duration: 8s; font-size: 70px;}
+        .g2 { left: 20%; animation-duration: 10s; font-size: 90px;}
+        .g3 { left: 40%; animation-duration: 7s; font-size: 80px;}
+        .g4 { left: 65%; animation-duration: 9s; font-size: 95px;}
+        .g5 { left: 85%; animation-duration: 11s; font-size: 75px;}
+
+        /* ADAPTACIÓN ESPECIAL PARA CELULARES */
+        @media (max-width: 480px) {
+            h1 { font-size: 32px; }
+            h2 { font-size: 22px; }
+            p { font-size: 18px; width: 95%; }
+            .foto-perfil { width: 180px; height: 180px; }
+            .btn-sorpresa { width: 90%; font-size: 18px; }
+            .btn-musica { width: 90%; font-size: 16px; }
+            #mensaje { font-size: 18px; }
+            .globo { font-size: 50px !important; } /* Achica los globos para que no tapen la pantalla */
+        }
     </style>
 </head>
 
 <body>
 
     <div class="contenedor">
+        
+        <button class="btn-musica" onclick="document.getElementById('musica').play()">
+            🎵 Reproducir Música
+        </button>
+        
+        <br>
+        
+        <img src="ely.jpeg" alt="Elizabeth" class="foto-perfil">
+
         <h1>🎉 ¡Feliz Cumpleaños Elizabeth! 🎂</h1>
 
         <h2>Que tengas un día maravilloso ✨</h2>
@@ -110,11 +158,11 @@
             Gracias por ser una persona tan especial.
         </p>
 
-        <button onclick="mostrarMensaje()">
+        <button class="btn-sorpresa" onclick="mostrarMensaje()">
             🎁 Abrir Sorpresa
         </button>
 
-        <div id="mensaje"> 
+        <div id="mensaje">
             ❤️ Te quiero mucho hermanita. Que todos tus sueños se hagan realidad. ❤️
         </div>
     </div>
@@ -125,6 +173,10 @@
     <div class="globo g4">🎈</div>
     <div class="globo g5">🎈</div>
 
+    <audio id="musica" loop>
+        <source src="happy_birthday_nkotb.mp3" type="audio/mpeg">
+    </audio>
+
     <script>
         function mostrarMensaje() {
             document.getElementById("mensaje").style.display = "block";
@@ -132,13 +184,4 @@
     </script>
 
 </body>
-<audio id="musica" loop>
-    <source src="happy_birthday_nkotb.mp3" type="audio/mpeg">
-</audio>
-
-<button id="playMusic" onclick="document.getElementById('musica').play()"
-style="position:absolute; top:20px; right:20px; padding:10px 20px;
-font-size:18px; border:none; border-radius:10px; cursor:pointer;">
-    🎵 Reproducir Música
-</button>
 </html>
